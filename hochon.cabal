@@ -1,4 +1,4 @@
-cabal-version: 1.12
+cabal-version: 2.2
 
 -- This file has been generated from package.yaml by hpack version 0.36.0.
 --
@@ -11,13 +11,16 @@ description:    Please see the README
 author:         barsanges
 maintainer:     https://github.com/barsanges
 copyright:      2024 barsanges
+license:        AGPL-3.0-only
+license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
-    LICENSE
 
 library
   other-modules:
+      Paths_hochon
+  autogen-modules:
       Paths_hochon
   hs-source-dirs:
       src

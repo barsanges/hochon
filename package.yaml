@@ -3,10 +3,11 @@ version:             0.1.0
 author:              barsanges
 maintainer:          https://github.com/barsanges
 copyright:           2024 barsanges
+license:             AGPL-3.0-only
+license-file:        LICENSE
 
 extra-source-files:
 - README.md
-- LICENSE
 
 synopsis:            A tool to merge and sort bank statements
 description:         Please see the README
