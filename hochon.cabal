@@ -18,6 +18,9 @@ extra-source-files:
     README.md
 
 library
+  exposed-modules:
+      Hochon.Data.Entry
+      Hochon.Data.Knowledge
   other-modules:
       Paths_hochon
   autogen-modules:
@@ -26,4 +29,6 @@ library
       src
   build-depends:
       base
+    , text
+    , time
   default-language: Haskell2010
