@@ -21,6 +21,7 @@ library
   exposed-modules:
       Hochon.Data.Entry
       Hochon.Data.Knowledge
+      Hochon.Parsing.Fortuneo
   other-modules:
       Paths_hochon
   autogen-modules:
