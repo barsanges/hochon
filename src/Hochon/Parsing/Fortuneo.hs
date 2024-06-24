@@ -104,7 +104,7 @@ getFirstJust (f:fs) x = case f x of
 debitcard :: Tx.Text -> Maybe (Method, Tx.Text)
 debitcard t = do
   l <- Tx.stripSuffix "CARTE " t
-  return (DebitCard, Tx.drop 6 l)
+  return (DebitCard, Tx.drop 6 l) -- On supprime l'info inutile "JJ/MM ".
 
 -- | Identifie une ligne correspondant à un prélèvement.
 directdebit :: Tx.Text -> Maybe (Method, Tx.Text)
