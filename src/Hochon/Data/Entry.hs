@@ -17,6 +17,7 @@ import Hochon.Data.Knowledge ( Account, Category )
 
 -- | Devise.
 data Currency = EUR
+  deriving (Eq, Show)
 
 -- | Méthode de paiement.
 data Method = Cash
@@ -24,6 +25,7 @@ data Method = Cash
             | DebitCard
             | DirectDebit
             | Transfer
+  deriving (Eq, Show)
 
 -- | Entrée d'un relevé de comptes consolidé.
 data Entry = Entry  { account :: Account
@@ -34,3 +36,4 @@ data Entry = Entry  { account :: Account
                     , method :: Maybe Method
                     , currency :: Currency
                     }
+  deriving (Eq, Show)
