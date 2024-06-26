@@ -20,3 +20,11 @@ dependencies:
 
 library:
   source-dirs: src
+
+tests:
+  hochon-tests:
+    main: Spec.hs
+    source-dirs: test
+    dependencies:
+    - hochon
+    - hspec
