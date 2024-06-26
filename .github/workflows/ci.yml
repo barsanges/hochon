@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+
+  pull_request:
+
+jobs:
+  stack:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: haskell/actions/setup@v2
+      name: Setup Haskell Stack
+      with:
+        enable-stack: true
+
+    - uses: actions/cache@v3
+      name: Cache ~/.stack
+      with:
+        path: ~/.stack
+        key: ${{ runner.os }}-stack
+
+    - name: Build
+      run: stack build
+
+    - name: Test
+      run: stack test
