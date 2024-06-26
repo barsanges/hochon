@@ -38,7 +38,7 @@ parseFortuneo acc knowledge raw = case length raw' of
       (errors, values) = partitionEithers parsedWithNumber
        -- TODO : plutôt que de tout mettre dans une string opaque, il faudrait un type d'erreur...
   where
-    raw' = Tx.lines raw
+    raw' = filter (\ l -> Tx.strip l /= "") $ Tx.lines raw
 
 -- | Ajoute un numéro de ligne à une erreur éventuelle.
 addLineNumber :: (Int, Either Tx.Text a) -> Either Tx.Text a
