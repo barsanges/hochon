@@ -81,7 +81,15 @@ instance MonadFail (Either Tx.Text) where
 
 -- | Lit une date au format "JJ/MM/AAAA".
 parseDay :: Tx.Text -> Either Tx.Text Ti.Day
-parseDay = (Ti.parseTimeM False Ti.defaultTimeLocale "%d/%m/%Y") . Tx.unpack
+parseDay t = case parsed of
+  Left _ -> Left $ Tx.concat [ "unable to parse the date '"
+                             , t
+                             , "'"
+                             ]
+  Right d -> Right d
+  where
+    parsed :: Either Tx.Text Ti.Day
+    parsed = Ti.parseTimeM False Ti.defaultTimeLocale "%d/%m/%Y" $  Tx.unpack t
 
 -- | Extrait, dans le libellé Fortuneo, le moyen de paiement.
 splitMethod :: Tx.Text -> (Maybe Method, Tx.Text)
