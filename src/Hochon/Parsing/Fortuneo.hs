@@ -125,7 +125,7 @@ parseAmount :: Tx.Text -> Either Tx.Text Rational
 parseAmount txt = case Tx.Read.rational $ Tx.replace "," "." txt of
   Left e -> Left $ Tx.pack e
   Right (x, "") -> Right x
-  Right (_, _) -> Left $ Tx.concat [ "the field "
+  Right (_, _) -> Left $ Tx.concat [ "the field '"
                                    , txt
-                                   , " should only contain a number"
+                                   , "' should only contain a number"
                                    ]
