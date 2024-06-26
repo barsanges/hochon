@@ -111,19 +111,19 @@ getFirstJust (f:fs) x = case f x of
 -- | Identifie une ligne correspondant à un paiement par carte.
 debitcard :: Tx.Text -> Maybe (Method, Tx.Text)
 debitcard t = do
-  l <- Tx.stripSuffix "CARTE " t
+  l <- Tx.stripPrefix "CARTE " t
   return (DebitCard, Tx.drop 6 l) -- On supprime l'info inutile "JJ/MM ".
 
 -- | Identifie une ligne correspondant à un prélèvement.
 directdebit :: Tx.Text -> Maybe (Method, Tx.Text)
 directdebit t = do
-  l <- Tx.stripSuffix "PRLV " t
+  l <- Tx.stripPrefix "PRLV " t
   return (DirectDebit, l)
 
 -- | Identifie une ligne correspondant à un virement ou un virement instantané.
 transfer :: Tx.Text -> Maybe (Method, Tx.Text)
-transfer t = case Tx.stripSuffix "VIR " t of
-  Just t' -> case Tx.stripSuffix "INST " t' of
+transfer t = case Tx.stripPrefix "VIR " t of
+  Just t' -> case Tx.stripPrefix "INST " t' of
     Just t'' -> Just (Transfer, t'') -- "VIR INST "
     Nothing -> Just (Transfer, t') -- "VIR "
   Nothing -> Nothing
