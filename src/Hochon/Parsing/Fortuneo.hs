@@ -130,10 +130,10 @@ transfer t = case Tx.stripSuffix "VIR " t of
 
 -- | Lit un chiffre écrit avec une virgule comme séparateur décimal.
 parseAmount :: Tx.Text -> Either Tx.Text Rational
-parseAmount txt = case Tx.Read.rational $ Tx.replace "," "." txt of
-  Left e -> Left $ Tx.pack e
+parseAmount "" = Right 0
+parseAmount txt = case Tx.Read.rational $ Tx.strip $ Tx.replace "," "." txt of
   Right (x, "") -> Right x
-  Right (_, _) -> Left $ Tx.concat [ "the field '"
-                                   , txt
-                                   , "' should only contain a number"
-                                   ]
+  _ -> Left $ Tx.concat [ "the field '"
+                        , txt
+                        , "' should only contain a number"
+                        ]
